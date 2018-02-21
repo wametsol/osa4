@@ -35,25 +35,8 @@ const mostBlogs = (blogs) => {
   var bloggers = []
   blogs.map(blog => {
     if(bloggers.find(blogger => 
-    blogger.author === blog.author)){/*
-      console.log('FIND : ',bloggers.find(blogger => 
-        blogger.author === blog.author));
+    blogger.author === blog.author)){
       
-      var blogger = bloggers.find(blogger => 
-        blogger.author === blog.author)
-      var maara = blogger.blogs +1
-      //console.log('maara ', maara);
-      //console.log('blogger: ', blogger);
-      
-      var i = bloggers.indexOf[blogger]
-      //console.log(bloggers.indexOf(blogger));
-      
-      blogger = {
-        author: blog.author,
-        blogs: +2
-      }
-      bloggers[bloggers.indexOf(blogger)] = blogger
-      */
       var blogger = bloggers.find(blogger => 
         blogger.author === blog.author)
         //console.log(bloggers[bloggers.indexOf(blogger)])
@@ -72,38 +55,58 @@ const mostBlogs = (blogs) => {
     bloggers.push(blogger)
 
     }
-
-    
-    
-    
-    
   })
   var mostblogger=bloggers[0]
-   
     bloggers.map(blogger => {
-    
-    if(+mostblogger.blogs < +blogger.blogs){
-       mostblogger = blogger
-       
+     if(+mostblogger.blogs < +blogger.blogs){
+       mostblogger = blogger  
     }
-    else{
-     
-    }
-    
-    
+    else{}
   })
-  
   //console.log('bloggers: ', bloggers);
   //console.log('mostblogger: ', mostblogger);
-  
-  
   return mostblogger
   
+}
+
+const mostLikes = (blogs) => {
+  var bloggers = []
+  blogs.map(blog => {
+    if(bloggers.find(blogger => 
+    blogger.author === blog.author)){
+      
+      var blogger = bloggers.find(blogger => 
+        blogger.author === blog.author)
+        bloggers[bloggers.indexOf(blogger)] = {
+          author : blogger.author,
+          likes : (blogger.likes+blog.likes)
+        }
+      
+    }
+    else{
+      var blogger = {
+        author : blog.author,
+        likes : blog.likes
+      }
+    bloggers.push(blogger)
+
+    }
+  })
+  var mostblogger=bloggers[0]
+    bloggers.map(blogger => {
+     if(+mostblogger.likes < +blogger.likes){
+       mostblogger = blogger  
+    }
+    else{}
+  })
+  console.log('mostblogger: ', mostblogger);
+  return mostblogger
 }
 
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  mostBlogs
+  mostBlogs,
+  mostLikes
 }
