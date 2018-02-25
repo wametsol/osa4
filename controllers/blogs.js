@@ -32,6 +32,9 @@ blogsRouter.use(bodyParser.json())
     if (body.title === undefined){
       return res.status(400).json({error: 'title missing'})
     }
+    if (body.likes === undefined){
+      body.likes = 0
+    }
     const blog = new Blog({
       title: body.title,
       author: body.author,

@@ -104,6 +104,30 @@ test('a valid blog can be addded', async () => {
   expect(contents).toContain('Tester blog')
 })
 
+test('if likes is undefined, it is set to 0', async () => {
+  const newBlog = {
+    _id: "5a422bc61b54a62322421asda1523",
+      title: "Tester blog2",
+      author: "B. Blogger",
+      url: "blog.blogger.com",
+      __v: 0
+  }
+  await api
+  .post('/api/blogs')
+  .send(newBlog)
+  .expect(200)
+  .expect('Content-Type', /application\/json/)
+
+  const res = await api
+  .get('/api/blogs')
+
+
+  const content = res.body.find(r => 
+  r.title === 'Tester blog2')
+  expect(content.likes).toBe(0)
+  
+})
+
 
 afterAll(() => {
     server.close()
