@@ -29,17 +29,15 @@ blogsRouter.use(bodyParser.json())
     const body = req.body
    
     
-    if (body.title === undefined){
-      return res.status(400).json({error: 'title missing'})
+    if (body.title === undefined || body.url === undefined){
+      return res.status(400).json({error: 'title or url missing'})
     }
-    if (body.likes === undefined){
-      body.likes = 0
-    }
+    
     const blog = new Blog({
       title: body.title,
       author: body.author,
       url: body.url,
-      likes: body.likes
+      likes: body.likes === undefined ? 0 : body.likes
     })
    
     

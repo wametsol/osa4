@@ -128,6 +128,30 @@ test('if likes is undefined, it is set to 0', async () => {
   
 })
 
+test('if title & url is undefined, return 400 Bad request', async () => {
+  const newBlog = {
+    _id: "5a422bc61b54a62354321asda1523",
+      author: "B. Blogger",
+      likes: "100",
+      __v: 0
+  }
+  const blogit = await api
+  .get('/api/blogs')
+
+  await api
+  .post('/api/blogs')
+  .send(newBlog)
+  .expect(400)
+  .expect('Content-Type', /application\/json/)
+
+  const res = await api
+  .get('/api/blogs')
+
+
+  expect(res.body.length).toBe(blogit.body.length)
+  
+})
+
 
 afterAll(() => {
     server.close()
