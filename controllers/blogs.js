@@ -5,6 +5,7 @@ blogsRouter.use(bodyParser.json())
   
   const formatBlog = (blog) => {
       return{
+        id: blog._id,
         title: blog.title,
         author: blog.author,
         url: blog.url,
