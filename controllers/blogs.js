@@ -50,7 +50,25 @@ blogsRouter.use(bodyParser.json())
   }
     
   })
+  blogsRouter.put('/api/blogs/:id', async (request, response) => {
+    try {
+      const body = request.body
+      
+      const blog = {
+        title: body.title,
+        author: body.author,
+        url: body.url,
+        likes: body.likes
+      }
 
+      await Blog.findByIdAndUpdate(request.params.id, blog)
+      response.json(formatBlog(blog))
+    } catch (exception) {
+      console.log(exception)
+      response.status(400).send({ error: 'wrong id'})
+      
+    }
+  })
   blogsRouter.delete('/api/blogs/:id', async (request, response) => {
     try{
       await Blog.findByIdAndRemove(request.params.id)
