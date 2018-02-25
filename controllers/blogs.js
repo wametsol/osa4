@@ -50,6 +50,17 @@ blogsRouter.use(bodyParser.json())
   }
     
   })
+
+  blogsRouter.delete('/api/blogs/:id', async (request, response) => {
+    try{
+      await Blog.findByIdAndRemove(request.params.id)
+    }
+    catch (exception) {
+      console.log(exception)
+      response.status(400).send({ error: 'wrong id'})
+      
+    }
+  })
   
   module.exports = blogsRouter
   
