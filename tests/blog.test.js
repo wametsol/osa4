@@ -49,14 +49,15 @@ const blogs = [
       __v: 0
     }  
   ]
-describe('dummy', () => {
+  describe.skip('list helpers', () =>{
+
     test('dummy is called', () => {
         
       
         const result = listHelper.dummy(blogs)
         expect(result).toBe(1)
       })
-})
+
 
 
 describe('total likes', () => {
@@ -91,4 +92,6 @@ describe('most likes', () => {
             likes: 17
         })
     })
+})
+
 })
