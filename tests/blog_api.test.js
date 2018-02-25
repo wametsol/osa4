@@ -12,6 +12,7 @@ const { formatBlog, initialBlogs, nonExistingId, blogsInDB} = require('./test_he
       await Promise.all(promiseArray)
     
   })
+  describe.skip('blog_api tests', () =>{
 test('blogs are returned as json', async () => {
   const blogsInDb = await blogsInDB()
     await api
@@ -109,6 +110,10 @@ test('if title & url is undefined, return 400 Bad request', async () => {
 })
 
 
-afterAll(() => {
+
+
+  })
+
+  afterAll(() => {
     server.close()
 })

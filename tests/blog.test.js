@@ -1,7 +1,7 @@
 const listHelper = require('../utils/list_helper')
 const { formatBlog, initialBlogs, nonExistingId, blogsInDB} = require('./test_helper')
 const blogs = initialBlogs
-  describe('list helpers', () =>{
+  describe.skip('list helpers', () =>{
 
     test('dummy is called', () => {
         
