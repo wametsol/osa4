@@ -1,6 +1,7 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
 const bodyParser = require('body-parser')
+const User = require('../models/user')
 blogsRouter.use(bodyParser.json())
   
   const formatBlog = (blog) => {
@@ -9,7 +10,8 @@ blogsRouter.use(bodyParser.json())
         title: blog.title,
         author: blog.author,
         url: blog.url,
-        likes: blog.likes
+        likes: blog.likes,
+        user: blog.user
       }
     }
   
@@ -33,12 +35,17 @@ blogsRouter.use(bodyParser.json())
     if (body.title === undefined || body.url === undefined){
       return res.status(400).json({error: 'title or url missing'})
     }
-    
+    useR = User.find({})
     const blog = new Blog({
       title: body.title,
       author: body.author,
       url: body.url,
-      likes: body.likes === undefined ? 0 : body.likes
+      likes: body.likes === undefined ? 0 : body.likes,
+      user: {
+        _id: useR._id,
+        username: useR.username,
+        name: useR.name
+      }
     })
    
     
